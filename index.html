@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>3D Cube with Uploaded Pictures</title>
+    <style>
+        #cube {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg) rotateY(0deg);
+            transition: transform 1s;
+        }
+
+        #cube .face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            background-size: cover;
+        }
+
+        #cube .front {
+            transform: translateZ(150px);
+        }
+
+        #cube .back {
+            transform: rotateY(180deg) translateZ(150px);
+        }
+
+        #cube .right {
+            transform: rotateY(90deg) translateZ(150px);
+        }
+
+        #cube .left {
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+
+        #cube .top {
+            transform: rotateX(90deg) translateZ(150px);
+        }
+
+        #cube .bottom {
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cube">
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+    </div>
+
+    <script>
+        const cube = document.getElementById('cube');
+        const faces = cube.getElementsByClassName('face');
+    </script>
+</body>
+
+</html>
