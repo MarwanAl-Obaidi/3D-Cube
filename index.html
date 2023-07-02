@@ -49,6 +49,7 @@
 </head>
 
 <body>
+    <input type="file" id="upload" accept="image/*">
     <div id="cube">
         <div class="face front"></div>
         <div class="face back"></div>
@@ -59,8 +60,24 @@
     </div>
 
     <script>
+        const uploadInput = document.getElementById('upload');
         const cube = document.getElementById('cube');
         const faces = cube.getElementsByClassName('face');
+
+        uploadInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const image = new Image();
+                image.src = e.target.result;
+                for (let i = 0; i < faces.length; i++) {
+                    faces[i].style.backgroundImage = `url(${e.target.result})`;
+                }
+            };
+
+            reader.readAsDataURL(file);
+        });
     </script>
 </body>
 
