@@ -63,6 +63,21 @@
         const uploadInput = document.getElementById('upload');
         const cube = document.getElementById('cube');
         const faces = cube.getElementsByClassName('face');
+        let rotateX = 0;
+        let rotateY = 0;
+
+        function updateCubeRotation() {
+            cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+
+        function animateCubeRotation() {
+            rotateX += 1;
+            rotateY += 1;
+            updateCubeRotation();
+            requestAnimationFrame(animateCubeRotation);
+        }
+
+        animateCubeRotation();
 
         uploadInput.addEventListener('change', function (event) {
             const file = event.target.files[0];
