@@ -3,93 +3,11 @@
 
 <head>
     <title>3D Cube with Uploaded Pictures</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        #cube-wrapper {
-            position: relative;
-            width: 300px;
-            height: 300px;
-        }
-
-        #cube {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transform-style: preserve-3d;
-            transform: rotateX(0deg) rotateY(0deg);
-            transition: transform 1s;
-        }
-
-        #cube .face {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border: 1px solid #000;
-            box-sizing: border-box;
-            background-size: cover;
-        }
-
-        #cube .front {
-            transform: translateZ(150px);
-        }
-
-        #cube .back {
-            transform: rotateY(180deg) translateZ(150px);
-        }
-
-        #cube .right {
-            transform: rotateY(90deg) translateZ(150px);
-        }
-
-        #cube .left {
-            transform: rotateY(-90deg) translateZ(150px);
-        }
-
-        #cube .top {
-            transform: rotateX(90deg) translateZ(150px);
-        }
-
-        #cube .bottom {
-            transform: rotateX(-90deg) translateZ(150px);
-        }
-
-        #upload {
-            margin-top: 20px;
-        }
-
-        #upload {
-            margin-top: 20px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        #upload:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="container">
+    <div id="container">
         <div id="cube-wrapper">
             <div id="cube">
                 <div class="face front"></div>
@@ -100,44 +18,13 @@
                 <div class="face bottom"></div>
             </div>
         </div>
+    </div>
+
+    <div id="upload-container">
         <input type="file" id="upload" accept="image/*">
     </div>
 
-    <script>
-        const uploadInput = document.getElementById('upload');
-        const cube = document.getElementById('cube');
-        const faces = cube.getElementsByClassName('face');
-        let rotateX = 0;
-        let rotateY = 0;
-
-        function updateCubeRotation() {
-            cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        }
-
-        function animateCubeRotation() {
-            rotateX += 1;
-            rotateY += 1;
-            updateCubeRotation();
-            requestAnimationFrame(animateCubeRotation);
-        }
-
-        animateCubeRotation();
-
-        uploadInput.addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const image = new Image();
-                image.src = e.target.result;
-                for (let i = 0; i < faces.length; i++) {
-                    faces[i].style.backgroundImage = `url(${e.target.result})`;
-                }
-            };
-
-            reader.readAsDataURL(file);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
